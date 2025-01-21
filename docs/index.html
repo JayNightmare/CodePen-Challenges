@@ -17,10 +17,21 @@
       text-align: center;
       background-color: #1e1e1e;
       border-bottom: 2px solid #444;
+      display: flex;
+      justify-content: space-between;
     }
-    header h1 {
+    header h1, header a {
       margin: 0;
       color: #ff9800;
+    }
+    header a {
+      text-decoration: none;
+      color: #ff9800;
+      border: none;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
     }
     main {
       padding: 1rem;
@@ -78,6 +89,9 @@
 </head>
 <body>
   <header>
+    <div>
+      <a href="https://codepen.io/JayNightmare">View CodePen</a>
+    </div>
     <h1>CodePen Challenges</h1>
   </header>
   <main id="challenge-list">
