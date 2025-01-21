@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap');
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: black;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	font-family: "Sixtyfour Convergence", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "BLED" 0,
+    "SCAN" 0,
+    "XELA" 0,
+    "YELA" 0;
+}
+
+.container {
+	position: relative;
+	width: 120px;
+	height: 120px; /* Fixed size to prevent hitbox shrinking */
+	position: absolute;
+	bottom: 0;
+}
+
+.jump {
+	background: white;
+	width: 120px;
+	height: 120px;
+	transform-origin: center;
+	animation: 2s idle infinite;
+}
+
+@keyframes idle {
+	0% {
+		transform: none;
+	}
+	30% {
+		transform: scaleX(1.2) scaleY(0.8) translateY(12%);
+	}
+}
+
+@keyframes jump {
+	0% {
+		transform: scaleX(1.3) scaleY(0.2) translateY(0);
+		animation-timing-function: ease-in;
+	}
+	20% {
+		transform: scaleX(0.8) scaleY(1.4) translateY(0);
+		animation-timing-function: ease-out;
+	}
+	35% {
+		transform: scaleX(1) scaleY(1) translateY(-20vh);
+		animation-timing-function: linear;
+	}
+	50% {
+		transform: scaleX(1.1) scaleY(1.1) translateY(-50vh) rotateY(180deg);
+		filter: brightness(1.5);
+	}
+	70% {
+		transform: scaleX(2.5) scaleY(2.5) rotateY(360deg);
+		filter: brightness(2);
+		animation-timing-function: ease-out;
+	}
+	85% {
+		transform: scaleX(1.2) scaleY(0.8) translateY(-20vh);
+		filter: brightness(1.2);
+	}
+	100% {
+		transform: scaleX(1) scaleY(1) translateY(0);
+		filter: brightness(1);
+	}
+}
+
+.sparkle {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background: white;
+	pointer-events: none;
+	animation: sparkle 1s forwards;
+}
+
+@keyframes sparkle {
+	0% {
+		opacity: 1;
+		transform: scale(1) translate(0, 0);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(3)
+			translate(calc(var(--dx) * 150px), calc(var(--dy) * 150px));
+	}
+}
+
+@keyframes squish {
+	0% {
+		transform: scaleX(1) scaleY(1);
+	}
+	100% {
+		transform: scaleX(1.3) scaleY(0.2) translateY(250px); /* Squished down */
+	}
+}
+
+@keyframes stylePointsAnim {
+	0% {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 1;
+	}
+	100% {
+		transform: translate(-50%, -100%) scale(1.5);
+		opacity: 0;
+	}
+}
