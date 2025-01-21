@@ -1,6 +1,6 @@
 const repoOwner = "JayNightmare";
 const repoName = "CodePen-Challenges";
-const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
+const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/docs`;
 
 async function fetchChallenges() {
   const response = await fetch(apiURL);
