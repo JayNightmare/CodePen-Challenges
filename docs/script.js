@@ -1,6 +1,6 @@
 const repoOwner = "JayNightmare";
 const repoName = "CodePen-Challenges";
-const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/docs`;
+const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
 
 async function fetchChallenges() {
   const response = await fetch(apiURL);
@@ -10,10 +10,9 @@ async function fetchChallenges() {
 
   const container = document.getElementById("challenge-list");
   const detailsSection = document.getElementById("file-list");
-  const detailsHeader = document.getElementById("details-header");
 
   for (const file of files) {
-    if (file.type === "dir") {
+    if (file.type === "dir" && !["docs", ".github"].includes(file.name)) {
       const folderResponse = await fetch(file.url);
       const folderContents = await folderResponse.json();
 
@@ -24,9 +23,15 @@ async function fetchChallenges() {
       card.className = "card";
       card.innerHTML = `
         <h3>${file.name}</h3>
-        <button class="view-details" data-folder-name="${file.name}" data-has-index="${hasIndexHtml}">
-          View Details
-        </button>
+        ${
+          hasIndexHtml
+            ? `<button class="view-challenge" data-url="https://${repoOwner}.github.io/${repoName}/${file.name}/">
+                View Challenge
+              </button>`
+            : `<button class="view-code" data-url="${file.url}">
+                View Code
+              </button>`
+        }
       `;
       container.appendChild(card);
 
@@ -41,8 +46,7 @@ async function fetchChallenges() {
           // Display folder contents
           detailsSection.innerHTML = contents
             .map(
-              item => `
-              <li>
+              item => `<li>
                 <a href="${item.download_url || item.html_url}" target="_blank">${item.name}</a>
               </li>`
             )
