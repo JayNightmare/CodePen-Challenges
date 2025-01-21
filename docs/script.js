@@ -9,6 +9,8 @@ async function fetchChallenges() {
   if (!Array.isArray(files)) return;
 
   const container = document.getElementById("challenge-list");
+  const detailsSection = document.getElementById("file-list");
+
   for (const file of files) {
     if (file.type === "dir" && !["docs", ".github"].includes(file.name)) {
       const folderResponse = await fetch(file.url);
@@ -23,15 +25,34 @@ async function fetchChallenges() {
         <h3>${file.name}</h3>
         ${
           hasIndexHtml
-            ? `<a href="https://${repoOwner}.github.io/${repoName}/${file.name}/" target="_blank">
+            ? `<button class="view-challenge" data-url="https://${repoOwner}.github.io/${repoName}/${file.name}/">
                 View Challenge
-              </a>`
-            : `<a href="${file.html_url}" target="_blank">
+              </button>`
+            : `<button class="view-code" data-url="${file.url}">
                 View Code
-              </a>`
+              </button>`
         }
       `;
       container.appendChild(card);
+
+      // Add event listeners for buttons
+      card.querySelector("button").addEventListener("click", async (e) => {
+        if (e.target.classList.contains("view-challenge")) {
+          window.open(e.target.dataset.url, "_blank");
+        } else if (e.target.classList.contains("view-code")) {
+          const response = await fetch(e.target.dataset.url);
+          const contents = await response.json();
+
+          // Display folder contents
+          detailsSection.innerHTML = contents
+            .map(
+              item => `<li>
+                <a href="${item.download_url || item.html_url}" target="_blank">${item.name}</a>
+              </li>`
+            )
+            .join("");
+        }
+      });
     }
   }
 }
