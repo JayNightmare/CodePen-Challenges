@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Montserrat:wght@100&display=swap');
+
+body {
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  background: black;
+}
+
+#top {
+  background-color: black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#top > .top-image {
+  background: url(https://i.gifer.com/NxfN.gif) center/cover;
+  height: 250px;
+  width: 250px;
+  position: absolute;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+#top > .bottom-image {
+  background: url(https://media4.giphy.com/headers/colorful-courier/ammr2uN8JUE3.gif) center/cover;
+  height: 250px;
+  width: 100vh;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#top > h1 {
+  margin: 0;
+  color: white;
+  
+  z-index: 1;
+  
+  padding-top: 5rem;
+  
+  font-size: 80px;
+  
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+#top > p { color: white; z-index: 1; }
+#top > hr { width: 5rem; margin-top: 1.5em; z-index: 1; }
+
+#top > button {
+  margin-top: 5vh;
+  width: 15em;
+  height: 3em;
+  
+  background: none;
+  border: 1px solid gray;
+  border-radius: 50px;
+  
+  color: white;
+  cursor: pointer;
+  
+  transition: 0.3s ease-in;
+  
+  &:hover {
+    background: rgba(50, 50, 50, 0.7);
+    transition: 0.1s ease-out;
+  }
+}
+
+.page-divide { width: 85vh; }
+
+#bottom {
+  height: 100vh;
+  background: black;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  
+  padding-top: 10vh;
+}
+
+.card {
+  opacity: 1;
+  transform: translateY(50px);
+  transition: all 2s ease-in-out;
+  color: white;
+  width: 37vh;
+  height: 55vh;
+  text-align: center;
+  
+  border-radius: 10px;
+}
+
+#card1, #card2, #card3 {
+  box-shadow: inset 0 -3em 3em rgb(0 0 0 / 50%);
+}
+
+#card1 {
+  background: rgb(4, 32, 64);
+  margin-top: 10em;
+}
+
+#card2 { background: rgb(104, 62, 122); }
+
+#card3 {
+  background: rgb(4, 51, 18);
+  margin-top: 10em;
+}
+
+#card1 > div > h1,
+#card2 > div > h1,
+#card3 > div > h1 {
+  margin-block-end: 0;
+  margin-block-start: 10px;
+}
+
+#card1 > div > h2,
+#card2 > div > h2,
+#card3 > div > h2 { margin: 0; }
+
+#card1 > hr,
+#card2 > hr,
+#card3 > hr { width: 200px; }
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0px);
+  animation: fadeUp 1s ease-in-out forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
