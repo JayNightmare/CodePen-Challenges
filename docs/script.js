@@ -53,7 +53,7 @@ async function fetchChallenges() {
                   justify-content: space-between;
                 ">
                   <a href="${item.download_url || item.html_url}" target="_blank">${item.name}</a>
-                  <button class="view-code" onclick="window.open('https://${repoOwner}.github.io/${repoName}/${item.name}')">View Code</button>
+                  <button class="view-code" onclick="window.open('https://${repoOwner}.github.io/${repoName}/${file.name}/${item.name}', '_blank')">View Code</button>
                 </div>
               </li>`
             )
