@@ -23,6 +23,7 @@ async function fetchChallenges() {
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
+        <h3>${file.name}</h3>
         <button class="view-details" data-folder-name="${file.name}" data-has-index="${hasIndexHtml}">
           View Details
         </button>
