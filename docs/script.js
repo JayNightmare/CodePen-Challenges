@@ -12,7 +12,7 @@ async function fetchChallenges() {
   const detailsSection = document.getElementById("file-list");
 
   for (const file of files) {
-    if (file.type === "dir".includes(file.name)) {
+    if (file.type === "dir") {
       const folderResponse = await fetch(file.url);
       const folderContents = await folderResponse.json();
 
