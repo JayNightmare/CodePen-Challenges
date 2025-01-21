@@ -41,8 +41,8 @@ async function fetchChallenges() {
           // Display folder contents
           detailsSection.innerHTML = contents
             .map(
-              item => `<li>
-                <!-- <a href="https://github.com/${repoOwner}/${repoName}/${file.name}">View Challenge</a> -->
+              item => `
+              <li>
                 <a href="${item.download_url || item.html_url}" target="_blank">${item.name}</a>
               </li>`
             )
