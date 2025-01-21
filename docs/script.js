@@ -9,19 +9,31 @@ async function fetchChallenges() {
   if (!Array.isArray(files)) return;
 
   const container = document.getElementById("challenge-list");
-  files
-    .filter(file => file.type === "dir" && !["docs", ".github"].includes(file.name))
-    .forEach(folder => {
+  for (const file of files) {
+    if (file.type === "dir" && !["docs", ".github"].includes(file.name)) {
+      const folderResponse = await fetch(file.url);
+      const folderContents = await folderResponse.json();
+
+      // Check if the folder contains an index.html file
+      const hasIndexHtml = folderContents.some(item => item.name === "index.html");
+
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
-        <h3>${folder.name}</h3>
-        <a href="https://${repoOwner}.github.io/${repoName}/${folder.name}/" target="_blank">
-          View Challenge
-        </a>
+        <h3>${file.name}</h3>
+        ${
+          hasIndexHtml
+            ? `<a href="https://${repoOwner}.github.io/${repoName}/${file.name}/" target="_blank">
+                View Challenge
+              </a>`
+            : `<a href="${file.html_url}" target="_blank">
+                View Code
+              </a>`
+        }
       `;
       container.appendChild(card);
-    });
+    }
+  }
 }
 
 fetchChallenges().catch(error => {
