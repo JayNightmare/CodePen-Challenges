@@ -10,6 +10,7 @@ async function fetchChallenges() {
 
   const container = document.getElementById("challenge-list");
   const detailsSection = document.getElementById("file-list");
+  const detailsHeader = document.getElementById("details-header");
 
   for (const file of files) {
     if (file.type === "dir") {
