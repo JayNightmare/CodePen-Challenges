@@ -1,6 +1,6 @@
 const repoOwner = "JayNightmare";
 const repoName = "CodePen-Challenges";
-const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
+const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/docs`;
 
 async function fetchChallenges() {
   const response = await fetch(apiURL);
@@ -12,7 +12,7 @@ async function fetchChallenges() {
   const detailsSection = document.getElementById("file-list");
 
   for (const file of files) {
-    if (file.type === "dir" && !["docs", ".github"].includes(file.name)) {
+    if (file.type === "dir".includes(file.name)) {
       const folderResponse = await fetch(file.url);
       const folderContents = await folderResponse.json();
 
