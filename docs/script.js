@@ -46,8 +46,15 @@ async function fetchChallenges() {
           // Display folder contents
           detailsSection.innerHTML = contents
             .map(
-              item => `<li>
-                <a href="${item.download_url || item.html_url}" target="_blank">${item.name}</a>
+              item => `
+              <li>
+                <div style="
+                  display: flex;
+                  justify-content: space-between;
+                ">
+                  <a href="${item.download_url || item.html_url}" target="_blank">${item.name}</a>
+                  <button class="view-code" onclick="window.open('https://${repoOwner}.github.io/${repoName}/${item.name}')">View Code</button>
+                </div>
               </li>`
             )
             .join("");
