@@ -23,35 +23,27 @@ async function fetchChallenges() {
       card.className = "card";
       card.innerHTML = `
         <h3>${file.name}</h3>
-        ${
-          hasIndexHtml
-            ? `<button class="view-challenge" data-url="https://${repoOwner}.github.io/${repoName}/${file.name}/">
-                View Challenge
-              </button>`
-            : `<button class="view-code" data-url="${file.url}">
-                View Code
-              </button>`
-        }
+        <button class="view-details" data-folder-name="${file.name}" data-has-index="${hasIndexHtml}">
+          View Details
+        </button>
       `;
       container.appendChild(card);
 
       // Add event listeners for buttons
-      card.querySelector("button").addEventListener("click", async (e) => {
-        if (e.target.classList.contains("view-challenge")) {
-          window.open(e.target.dataset.url, "_blank");
-        } else if (e.target.classList.contains("view-code")) {
-          const response = await fetch(e.target.dataset.url);
-          const contents = await response.json();
-
-          // Display folder contents
-          detailsSection.innerHTML = contents
-            .map(
-              item => `<li>
-                <a href="${item.download_url || item.html_url}" target="_blank">${item.name}</a>
-              </li>`
-            )
-            .join("");
-        }
+      card.querySelector(".view-details").addEventListener("click", () => {
+        detailsHeader.textContent = `Details for: ${file.name}`;
+        detailsSection.innerHTML = `
+          ${
+            hasIndexHtml
+              ? `<button onclick="window.open('https://${repoOwner}.github.io/${repoName}/${file.name}/', '_blank')">
+                    View Challenge
+                 </button>`
+              : `<p> This folder doesn't contain a deployed challenge</p>`
+          }
+          <button onclick="window.open('${file.html_url}', '_blank')">
+            View Code
+          </button>
+        `;
       });
     }
   }
