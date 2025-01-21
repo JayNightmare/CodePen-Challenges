@@ -10,7 +10,7 @@ async function fetchChallenges() {
 
   const container = document.getElementById("challenge-list");
   files
-    .filter(file => file.type === "dir") && !["docs", ".github"].includes(file.name))
+    .filter(file => file.type === "dir" && !["docs", ".github"].includes(file.name))
     .forEach(folder => {
       const card = document.createElement("div");
       card.className = "card";
