@@ -1,0 +1,43 @@
+<head>
+	<link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<!-- Main Menu -->
+	<div class="container" id="main-menu">
+		<h1>🎵 Dance Revolution 🕺</h1>
+		<div class="menu-buttons">
+			<button class="mode-btn" data-mode="rhythm">🎶 Rhythm Mode</button>
+		</div>
+		<h2 class="credits glow">Use W, A, S, D keys to play!</h2>
+		<hr>
+		<p class="credits">Game is still in development!</p>
+		<p class="credits">This is my first game, so at the moment the default difficulty is hard :D</p>
+
+		<p class="credits">Last Updated: 21:05 2nd/Feb/2025</p>
+		<h2 class="glow">comment your top score!</h2>
+		</div>
+
+		<!-- Game Container -->
+		<div class="game-container hidden">
+			<audio id="game-audio" class="audio-file" preload></audio>
+			<button class="exit-btn">Exit to Menu</button>
+			<button id="start-game">Start Game</button>
+			<canvas id="particles"></canvas>
+			<div class="hud">
+				<div>
+					<div class="score">Score: <span id="score">0</span></div>
+					<div class="combo-box">COMBO: <span id="combo">0</span>x</div>
+				</div>
+				<div class="dance-meter">
+					<div class="meter-bar"></div>
+				</div>
+			</div>
+			<!-- Hit Zone: the area where notes should be hit -->
+			<div class="hit-zone"></div>
+			<div class="rhythm-track"></div>
+		</div>
+	</div>
+  <script src="script.js"></script>
+</body>
